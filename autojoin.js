@@ -25,7 +25,7 @@ function scanHash()
 	{
 		console.log("scanning the raffles...");
 		scanRaffles();
-		var sri = setTimeout(function(){scanRaffles();},1000);
+		var sri = setInterval(function(){scanRaffles();},1000);
 		setTimeout(function(){location.reload();},30000);	// reload the page after 30 sec
 	}
 
@@ -54,12 +54,10 @@ function scanRaffles()
 		{
 			var r = $(this).attr("id");
 			var raffleId = r.replace("raffle-box-","");
-			window.focus();
 			if(openedTabs < 5)
 			{
-				var win = window.open(window.location.href+"/"+raffleId+"#join");
+				var win = window.open(window.location.href+"/"+raffleId+"#join", "_blank");
 				openedTabs++;
-				window.focus();
 				$(this).css("opacity","0.6").hide();
 			}
 		}

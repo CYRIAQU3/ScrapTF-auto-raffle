@@ -1,13 +1,17 @@
 // ==UserScript==
 // @name         Scrap.tf auto join
 // @namespace    http://scrap.tf
-// @version      0.1
-// @description  enter something useful
+// @version      0.2
+// @description  Auto join public raffles fron Scrap.tf
 // @author       CYRIAQU3
 // @match        https://scrap.tf/*
 // @grant        none
+// @homepageURL  http://www.cyriaquedelaunay.fr
+// @updateURL	 https://raw.githubusercontent.com/CYRIAQU3/ScrapTF-auto-raffle/master/autojoin.js
+// @downloadURL  https://raw.githubusercontent.com/CYRIAQU3/ScrapTF-auto-raffle/master/autojoin.js
 // ==/UserScript==
 
+var openedTabs = 0;	//number of opened tabs
 $(document).ready(function()
 {
 	scanHash();
@@ -21,7 +25,7 @@ function scanHash()
 	{
 		console.log("scanning the raffles...");
 		scanRaffles();
-		var sri = setInterval(function(){scanRaffles();},5000);
+		var sri = setTimeout(function(){scanRaffles();},1000);
 		setTimeout(function(){location.reload();},30000);	// reload the page after 30 sec
 	}
 
@@ -38,20 +42,29 @@ function scanHash()
 
 function scanRaffles()
 {
-	$("html, body").animate({ scrollTop: $(document).height() }, 1000);
+	$("html, body").animate({ scrollTop: $(document).height() }, 100);
 	$(".panel-raffle").each(function()
 	{
-		var o = $(this).css("opacity");
-		if(o == "0.6")
+		if(c <=5)	// only 5 tab max per request
 		{
-			$(this).hide();
-		}
-		else
-		{
-			var r = $(this).attr("id");
-			var raffleId = r.replace("raffle-box-","");
-			window.open(window.location.href+"/"+raffleId+"#join");
-			$(this).css("opacity","0.6").hide();
+			var o = $(this).css("opacity");
+			if(o == "0.6")
+			{
+				$(this).hide();
+			}
+			else
+			{
+				var r = $(this).attr("id");
+				var raffleId = r.replace("raffle-box-","");
+				window.focus();
+				if(openedTabs < 5)
+				{
+					var win = window.open(window.location.href+"/"+raffleId+"#join");
+					openedTabs++;
+					window.focus();
+					$(this).css("opacity","0.6").hide();
+				}
+			}
 		}
 	});
 }

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Scrap.tf auto join
 // @namespace    http://scrap.tf
-// @version      0.5
+// @version      0.6
 // @description  Auto join public raffles fron Scrap.tf
 // @author       CYRIAQU3
 // @match        https://scrap.tf/*
@@ -61,7 +61,6 @@ function scanRaffles()
 			    win.blur();
 			  	win.resizeTo(0,0); 
 			 	win.moveTo(0,window.screen.availHeight+10);
-			    this.window.focus();
 				openedTabs++;
 				$(this).css("opacity","0.6").hide();
 			}

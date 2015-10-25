@@ -45,25 +45,22 @@ function scanRaffles()
 	$("html, body").animate({ scrollTop: $(document).height() }, 100);
 	$(".panel-raffle").each(function()
 	{
-		if(c <=5)	// only 5 tab max per request
+		var o = $(this).css("opacity");
+		if(o == "0.6")
 		{
-			var o = $(this).css("opacity");
-			if(o == "0.6")
+			$(this).hide();
+		}
+		else
+		{
+			var r = $(this).attr("id");
+			var raffleId = r.replace("raffle-box-","");
+			window.focus();
+			if(openedTabs < 5)
 			{
-				$(this).hide();
-			}
-			else
-			{
-				var r = $(this).attr("id");
-				var raffleId = r.replace("raffle-box-","");
+				var win = window.open(window.location.href+"/"+raffleId+"#join");
+				openedTabs++;
 				window.focus();
-				if(openedTabs < 5)
-				{
-					var win = window.open(window.location.href+"/"+raffleId+"#join");
-					openedTabs++;
-					window.focus();
-					$(this).css("opacity","0.6").hide();
-				}
+				$(this).css("opacity","0.6").hide();
 			}
 		}
 	});

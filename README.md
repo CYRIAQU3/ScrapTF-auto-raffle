@@ -6,4 +6,4 @@ Auto join public raffles from Scrap.tf
 - Install a userscript Manager (Like GreyzMonkey or TamperMonkey)
 - Copy the Raw Url of autojoin.js
 - In the Userscript software : Paste the Raw url inside the Update Url field
-- Go to http://scrap.tf and ENJOY !
+- Go to http://scrap.tf -> Raffles -> Public Raffles and ENJOY !

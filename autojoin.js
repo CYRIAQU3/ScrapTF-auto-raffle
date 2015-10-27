@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Scrap.tf auto join
 // @namespace    http://scrap.tf
-// @version      0.6
+// @version      0.7
 // @description  Auto join public raffles fron Scrap.tf
 // @author       CYRIAQU3
 // @match        https://scrap.tf/*
@@ -45,6 +45,10 @@ function scanRaffles()
 {
 	var pc = 0;	// vérifie si il y a des panels de raffles remportées, si oui : on les ignore (on ne check que le deuxième tableau)
 	var cId = "raffle-panel-1"; // id du conteneur qui contient les raffles
+	var needScroll = true;	// vérifie si il faut continuer de scroller vers le bas (en fonction du label de chargement)
+	var pl;
+	var loadingDoneLabel = "That's all, no more!";
+
 	$(".panel").each(function()
 	{
 		pc++;
@@ -56,7 +60,18 @@ function scanRaffles()
 		cId = "raffle-panel-2";
 	}
 
-	$("html, body").animate({ scrollTop: $(document).height() }, 100);
+	pl = $(".pag-loading").text();
+	
+	if(pl == loadingDoneLabel)
+	{
+		needScroll = false;	// désactivation du scroll
+	}
+
+	if(needScroll)
+	{
+		$("html, body").animate({ scrollTop: $(document).height() }, 100);
+	}
+
 	$("#"+cId).find(".panel-raffle").each(function()
 	{
 		var o = $(this).css("opacity");

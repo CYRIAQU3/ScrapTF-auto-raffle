@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Scrap.tf auto join
 // @namespace    http://scrap.tf
-// @version      0.7
+// @version      0.8
 // @description  Auto join public raffles fron Scrap.tf
 // @author       CYRIAQU3
 // @match        https://scrap.tf/*
@@ -49,16 +49,6 @@ function scanRaffles()
 	var pl;
 	var loadingDoneLabel = "That's all, no more!";
 
-	$(".panel").each(function()
-	{
-		pc++;
-		$(this).attr("id","raffle-panel-"+pc);
-	});
-
-	if(pc > 1)
-	{
-		cId = "raffle-panel-2";
-	}
 
 	pl = $(".pag-loading").text();
 	
@@ -70,6 +60,18 @@ function scanRaffles()
 	if(needScroll)
 	{
 		$("html, body").animate({ scrollTop: $(document).height() }, 100);
+	}
+
+	$(".panel").each(function()
+	{
+		pc++;
+		$(this).attr("id","raffle-panel-"+pc);
+	});
+
+	if(pc > 1)
+	{
+		$("#raffle-panel-1").hide();
+		cId = "raffle-panel-2";
 	}
 
 	$("#"+cId).find(".panel-raffle").each(function()

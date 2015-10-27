@@ -21,6 +21,7 @@ function scanHash()
 {
 	var h = window.location.hash;
 	var url = window.location.href;
+
 	if(url == "https://scrap.tf/raffles")
 	{
 		console.log("scanning the raffles...");
@@ -42,8 +43,21 @@ function scanHash()
 
 function scanRaffles()
 {
+	var pc = 0;	// vérifie si il y a des panels de raffles remportées, si oui : on les ignore (on ne check que le deuxième tableau)
+	var cId = "raffle-panel-1"; // id du conteneur qui contient les raffles
+	$(".panel").each(function()
+	{
+		pc++;
+		$(this).attr("id","raffle-panel-"+pc);
+	});
+
+	if(pc > 1)
+	{
+		cId = "raffle-panel-2";
+	}
+
 	$("html, body").animate({ scrollTop: $(document).height() }, 100);
-	$(".panel-raffle").each(function()
+	$("#"+cId).find(".panel-raffle").each(function()
 	{
 		var o = $(this).css("opacity");
 		if(o == "0.6")

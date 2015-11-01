@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Scrap.tf auto join
 // @namespace    http://scrap.tf
-// @version      0.8
+// @version      1.0
 // @description  Auto join public raffles fron Scrap.tf
 // @author       CYRIAQU3
 // @match        https://scrap.tf/*
@@ -21,8 +21,9 @@ function scanHash()
 {
 	var h = window.location.hash;
 	var url = window.location.href;
+	var u = "https://scrap.tf/raffles";
 
-	if(url == "https://scrap.tf/raffles")
+	if(url == u)
 	{
 		console.log("scanning the raffles...");
 		scanRaffles();
@@ -30,14 +31,17 @@ function scanHash()
 		setTimeout(function(){location.reload();},30000);	// reload the page after 30 sec
 	}
 
-	if(h == "#join")
+	if (url.indexOf(u) > -1 && url != u)
 	{
-		console.log("Joining raffle...");
-		joinRaffle();
-	}
-	else
-	{
-		window.close();
+    	if(h == "#join")
+		{
+			console.log("Joining raffle...");
+			joinRaffle();
+		}
+		else
+		{
+			window.close();
+		}
 	}
 }
 

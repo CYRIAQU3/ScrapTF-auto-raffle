@@ -1,3 +1,5 @@
+#Scrap.tf added a security feature, so this project is now deprecated
+
 ![alt tag](http://i.imgur.com/xY3TPdb.png)
 # ScrapTF-auto-raffle
 Auto join public raffles from Scrap.tf

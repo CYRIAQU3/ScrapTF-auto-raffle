@@ -1,4 +1,5 @@
-#Scrap.tf added a security feature, so this project is now deprecated
+##I do not guarantee that the script works
+#This project is no longer maintained
 
 ![alt tag](http://i.imgur.com/xY3TPdb.png)
 # ScrapTF-auto-raffle
